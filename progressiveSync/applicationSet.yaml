@@ -39,7 +39,6 @@ spec:
   template:
     metadata:
       name: '{{.name}}-{{.environment}}'
-      namespace: argocd-e2e
       labels:
         environment: '{{.environment}}'
     spec:
