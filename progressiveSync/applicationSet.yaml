@@ -12,10 +12,10 @@ spec:
       - name: app1
         environment: dev
         url: https://kubernetes.default.svc
-      - name: app3
+      - name: app2
         environment: staging
         url: https://kubernetes.default.svc
-      - name: app4
+      - name: app3
         environment: prod
         url: https://kubernetes.default.svc
   strategy:
@@ -46,7 +46,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/aali309/argocd-test-nested
+        repoURL: https://github.com/ranakan19/test-yamls
         targetRevision: HEAD
         path: apps/{{.name}}
       destination:
