@@ -26,6 +26,8 @@ spec:
       name: '{{.name}}-{{.environment}}'
       labels:
         environment: '{{.environment}}'
+      finalizers:
+      - test.deletion
     spec:
       project: default
       source:
