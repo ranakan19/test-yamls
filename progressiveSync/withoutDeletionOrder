@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: progressive-sync-apps
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+  - list:
+      elements:
+      - name: app1
+        environment: dev
+        url: https://kubernetes.default.svc
+      - name: app2
+        environment: staging
+        url: https://kubernetes.default.svc
+      - name: app3
+        environment: prod
+        url: https://kubernetes.default.svc
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+      - matchExpressions:
+        - key: environment
+          operator: In
+          values:
+          - dev
+      - matchExpressions:
+        - key: environment
+          operator: In
+          values:
+          - staging
+      - matchExpressions:
+        - key: environment
+          operator: In
+          values:
+          - prod
+  template:
+    metadata:
+      name: '{{.name}}-{{.environment}}'
+      labels:
+        environment: '{{.environment}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ranakan19/test-yamls
+        targetRevision: HEAD
+        path: apps/{{.name}}
+      destination:
+        server: '{{.url}}'
+        namespace: '{{.name}}'
