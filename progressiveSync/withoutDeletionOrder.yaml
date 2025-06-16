@@ -8,13 +8,13 @@ spec:
   generators:
   - list:
       elements:
-      - name: app1
+      - name: app
         environment: dev
         url: https://kubernetes.default.svc
-      - name: app2
+      - name: app
         environment: staging
         url: https://kubernetes.default.svc
-      - name: app3
+      - name: app
         environment: prod
         url: https://kubernetes.default.svc
   strategy:
