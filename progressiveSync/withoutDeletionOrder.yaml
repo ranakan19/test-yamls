@@ -49,4 +49,4 @@ spec:
         path: apps/{{.name}}
       destination:
         server: '{{.url}}'
-        namespace: '{{.name}}'
+        namespace: '{{.name}}-{{.environment}}'
