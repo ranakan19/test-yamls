@@ -50,3 +50,6 @@ spec:
       destination:
         server: '{{.url}}'
         namespace: '{{.name}}-{{.environment}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true 
