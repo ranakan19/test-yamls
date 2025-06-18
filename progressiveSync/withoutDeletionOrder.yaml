@@ -8,13 +8,13 @@ spec:
   generators:
   - list:
       elements:
-      - name: app
+      - name: app1
         environment: dev
         url: https://kubernetes.default.svc
-      - name: app
+      - name: app2
         environment: staging
         url: https://kubernetes.default.svc
-      - name: app
+      - name: app3
         environment: prod
         url: https://kubernetes.default.svc
   strategy:
@@ -49,7 +49,7 @@ spec:
         path: apps/{{.name}}
       destination:
         server: '{{.url}}'
-        namespace: '{{.name}}-{{.environment}}'
+        namespace: '{{.name}}'
       syncPolicy:
         syncOptions:
           - CreateNamespace=true 
