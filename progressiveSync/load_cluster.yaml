@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: race-condition-test
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      # Step 1: Many dev applications (increases chance of race)
+      - cluster: dev-1
+        env: dev
+        app: app1
+      - cluster: dev-2  
+        env: dev
+        app: app2
+      - cluster: dev-3
+        env: dev
+        app: app3
+      - cluster: dev-4
+        env: dev
+        app: app4
+      - cluster: dev-5
+        env: dev
+        app: app5
+      # Step 2: Staging applications
+      - cluster: staging-1
+        env: staging
+        app: app6
+      - cluster: staging-2
+        env: staging
+        app: app7
+      - cluster: staging-3
+        env: staging
+        app: app8
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+      - matchExpressions:
+        - key: env
+          operator: In
+          values: ["dev"]
+        maxUpdate: 2  # Allow 2 concurrent updates
+      - matchExpressions:
+        - key: env
+          operator: In
+          values: ["staging"]
+        maxUpdate: 1
+  template:
+    metadata:
+      name: '{{app}}-{{cluster}}'
+      labels:
+        env: '{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: guestbook
+      destination:
+        server: '{{cluster}}'
+        namespace: {{app}}-{{cluster}}
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
