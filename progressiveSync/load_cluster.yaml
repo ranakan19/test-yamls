@@ -59,8 +59,8 @@ spec:
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: {{.url}}
-        namespace: {{.app}}-{{.env}}
+        server: '{{.url}}'
+        namespace: '{{.app}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
