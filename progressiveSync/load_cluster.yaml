@@ -8,29 +8,29 @@ spec:
   - list:
       elements:
       # Step 1: Many dev applications (increases chance of race)
-      - cluster: dev-1
+      - url: https://kubernetes.default.svc
         env: dev
         app: app1
-      - cluster: dev-2  
+      - url: https://kubernetes.default.svc  
         env: dev
         app: app2
-      - cluster: dev-3
+      - url: https://kubernetes.default.svc
         env: dev
         app: app3
-      - cluster: dev-4
+      - url: https://kubernetes.default.svc
         env: dev
         app: app4
-      - cluster: dev-5
+      - url: https://kubernetes.default.svc
         env: dev
         app: app5
       # Step 2: Staging applications
-      - cluster: staging-1
+      - url: https://kubernetes.default.svc
         env: staging
         app: app6
-      - cluster: staging-2
+      - url: https://kubernetes.default.svc
         env: staging
         app: app7
-      - cluster: staging-3
+      - url: https://kubernetes.default.svc
         env: staging
         app: app8
   strategy:
@@ -49,7 +49,7 @@ spec:
         maxUpdate: 1
   template:
     metadata:
-      name: '{{app}}-{{cluster}}'
+      name: '{{.app}}-{{env}}'
       labels:
         env: '{{env}}'
     spec:
@@ -59,8 +59,8 @@ spec:
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: '{{cluster}}'
-        namespace: {{app}}-{{cluster}}
+        server: '{{.url}}'
+        namespace: {{.app}}-{{.env}}
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
