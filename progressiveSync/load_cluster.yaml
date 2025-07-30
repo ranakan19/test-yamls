@@ -59,7 +59,7 @@ spec:
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: '{{.url}}'
+        server: {{.url}}
         namespace: {{.app}}-{{.env}}
       syncPolicy:
         syncOptions:
