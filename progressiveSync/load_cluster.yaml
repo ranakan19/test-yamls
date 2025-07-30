@@ -49,7 +49,7 @@ spec:
         maxUpdate: 1
   template:
     metadata:
-      name: '{{.app}}-{{env}}'
+      name: '{{app}}-{{env}}'
       labels:
         env: '{{env}}'
     spec:
@@ -59,8 +59,8 @@ spec:
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: '{{.url}}'
-        namespace: '{{.app}}'
+        server: '{{url}}'
+        namespace: '{{app}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
