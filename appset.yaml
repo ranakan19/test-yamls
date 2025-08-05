@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: progressive-sync-apps
+  name: test-appset
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -20,30 +20,14 @@ spec:
         environment: prod
         url: https://kubernetes.default.svc
   strategy:
-    type: RollingSync
-    deletionOrder: Reverse
-    rollingSync:
-      steps:
-      - matchExpressions:
-        - key: environment
-          operator: In
-          values:
-          - dev
-      - matchExpressions:
-        - key: environment
-          operator: In
-          values:
-          - staging
-      - matchExpressions:
-        - key: environment
-          operator: In
-          values:
-          - prod
+    type: AllAtOnce
   template:
     metadata:
       name: '{{.name}}-{{.environment}}'
       labels:
         environment: '{{.environment}}'
+      finalizers:
+      - test.deletion
     spec:
       project: default
       source:

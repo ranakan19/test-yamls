@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: race-condition-test
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      # Step 1: Many dev applications (increases chance of race)
+      - url: https://kubernetes.default.svc
+        env: dev
+        app: app1
+      - url: https://kubernetes.default.svc  
+        env: dev
+        app: app2
+      - url: https://kubernetes.default.svc
+        env: dev
+        app: app3
+      - url: https://kubernetes.default.svc
+        env: dev
+        app: app4
+      - url: https://kubernetes.default.svc
+        env: dev
+        app: app5
+      # Step 2: Staging applications
+      - url: https://kubernetes.default.svc
+        env: staging
+        app: app6
+      - url: https://kubernetes.default.svc
+        env: staging
+        app: app7
+      - url: https://kubernetes.default.svc
+        env: staging
+        app: app8
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+      - matchExpressions:
+        - key: env
+          operator: In
+          values: ["dev"]
+        maxUpdate: 2  # Allow 2 concurrent updates
+      - matchExpressions:
+        - key: env
+          operator: In
+          values: ["staging"]
+        maxUpdate: 1
+  template:
+    metadata:
+      name: '{{app}}-{{env}}'
+      labels:
+        env: '{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps
+        targetRevision: HEAD
+        path: guestbook
+      destination:
+        server: '{{url}}'
+        namespace: '{{app}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true

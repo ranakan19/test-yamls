@@ -2,8 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: progressive-sync-apps
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
   goTemplate: true
   goTemplateOptions: [ "missingkey=error" ]
@@ -21,7 +19,6 @@ spec:
         url: https://kubernetes.default.svc
   strategy:
     type: RollingSync
-    deletionOrder: Reverse
     rollingSync:
       steps:
       - matchExpressions:
@@ -53,3 +50,6 @@ spec:
       destination:
         server: '{{.url}}'
         namespace: '{{.name}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true 
