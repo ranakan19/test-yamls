@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: spring-petclinic
-  name: spring-petclinic
+  name: spring-petclinic-new
 spec:
   ports:
     - name: 8080-tcp
