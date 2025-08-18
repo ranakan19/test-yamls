@@ -1,0 +1,137 @@
+=== Progressive Sync Status at 2025-08-15 14:04:14 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Healthy   
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Healthy   
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Progressive Sync Analysis ---
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:04:42 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Healthy   
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Healthy   
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Progressive Sync Analysis ---
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:05:08 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Healthy   
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Healthy   
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Progressive Sync Analysis ---
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:05:35 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Healthy   
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Healthy   
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Progressive Sync Analysis ---
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:06:01 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Healthy   
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Progressive Sync Analysis ---
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:06:28 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Progressive Sync Analysis ---
+🚨 CRITICAL: Wave 1 started before Wave 0 is fully healthy! This indicates a race condition.
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:06:54 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Progressive Sync Analysis ---
+🚨 CRITICAL: Wave 1 started before Wave 0 is fully healthy! This indicates a race condition.
+
+======================================================
+
+=== Progressive Sync Status at 2025-08-15 14:07:21 ===
+--- Wave 0 Applications ---
+  wave0-database       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave0-redis          | Sync: Synced     | Health: Healthy   
+  Wave 0 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Wave 1 Applications ---
+  wave1-api            | Sync: Synced     | Health: Healthy   
+  wave1-backend        | Sync: Synced     | Health: Healthy   
+  Wave 1 Summary: 2/2 Synced, 2/2 Healthy, Ready for next wave: YES
+--- Wave 2 Applications ---
+  wave2-frontend       | Sync: Synced     | Health: Progressing ⚠️ RACE CONDITION
+  wave2-ingress        | Sync: Synced     | Health: Healthy   
+  Wave 2 Summary: 2/2 Synced, 1/2 Healthy, Ready for next wave: NO ⚠️ 1 RACE CONDITIONS DETECTED!
+--- Progressive Sync Analysis ---
+🚨 CRITICAL: Wave 1 started before Wave 0 is fully healthy! This indicates a race condition.
+
