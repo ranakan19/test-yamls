@@ -6,6 +6,6 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-  selector:#BadIndent next line
-     app: guestbook-ui
+  selector:
+    app: guestbook-ui
 
