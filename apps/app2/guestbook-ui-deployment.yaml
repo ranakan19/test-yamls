@@ -4,6 +4,7 @@ metadata:
   name: guestbook-ui
 spec:
   replicas: 2
+  random: testing
   revisionHistoryLimit: 3
   selector:
     matchLabels:
