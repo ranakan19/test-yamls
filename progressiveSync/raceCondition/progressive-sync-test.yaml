@@ -1,0 +1,77 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet                       
+metadata:                                  
+  name: progressive-sync-test
+  namespace: argocd
+spec:                       
+  generators:           
+  - list:                  
+      elements:  
+      # Wave 0 - Infrastructure/Dependencies
+      - name: wave0-database
+        wave: "0"                      
+        path: guestbook      
+        namespace: wave0
+      - name: wave0-redis                       
+        wave: "0"                      
+        path: helm-guestbook 
+        namespace: wave0
+      # Wave 1 - Core Services                                       
+      - name: wave1-backend 
+        wave: "1"       
+        path: guestbook
+        namespace: wave1                                             
+      - name: wave1-api           
+        wave: "1"       
+        path: helm-guestbook
+        namespace: wave1                                                          
+      # Wave 2 - Frontend/External Services
+      - name: wave2-frontend  
+        wave: "2"                
+        path: guestbook                                                           
+        namespace: wave2   
+      - name: wave2-ingress   
+        wave: "2"                
+        path: helm-guestbook             
+        namespace: wave2 
+  template:                
+    metadata:    
+      name: '{{name}}'                      
+      labels:               
+        test-scenario: progressive-sync
+        sync-wave: '{{wave}}'
+      annotations:      
+        argocd.argoproj.io/sync-wave: '{{wave}}'
+    spec:                              
+      project: default       
+      source:           
+        repoURL: https://github.com/ranakan19/argocd-example-apps.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:     
+        server: https://kubernetes.default.svc                       
+        namespace: '{{namespace}}'
+      syncPolicy:       
+        automated:          
+          prune: true                                                             
+          selfHeal: false  # Disable selfHeal to make race conditions more obvious
+        syncOptions:          
+        - CreateNamespace=true   
+        - ApplyOutOfSyncOnly=true                                                 
+  # Progressive Sync Policy Configuration                                         
+  strategy:                   
+    type: RollingSync            
+    rollingSync:                         
+      steps:                             
+      - matchExpressions:
+        - key: sync-wave
+          operator: In 
+          values: ["0"]                
+      - matchExpressions:              
+        - key: sync-wave     
+          operator: In                          
+          values: ["1"]                         
+      - matchExpressions:
+        - key: sync-wave
+          operator: In                                               
+          values: ["2"] 
