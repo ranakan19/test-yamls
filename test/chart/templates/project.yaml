@@ -1,0 +1,24 @@
+{{ range .Values.ProjectNames }}
+{{ $Name := .projectName }}
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: demo-{{ $Name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-options: Prune=confirm,Delete=true
+  labels:
+    cool.dbg/cool-tenant: cool-team
+    cmdb.dbg/applicationcode: AID734
+    cmdb.dbg/supportgroupid: "0001998972"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-{{ $Name }}
+  namespace: demo-{{ $Name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+---
+{{- end }}
