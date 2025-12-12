@@ -7,7 +7,6 @@ metadata:
   name: demo-{{ $Name }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    argocd.argoproj.io/sync-options: Prune=confirm,Delete=true
   labels:
     cool.dbg/cool-tenant: cool-team
     cmdb.dbg/applicationcode: AID734
