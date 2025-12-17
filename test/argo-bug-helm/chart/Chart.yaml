@@ -1,0 +1,6 @@
+apiVersion: v2
+name: argo-bug-helm
+description: A mini Helm chart to create an OpenShift project
+type: application
+version: 0.1.0
+appVersion: "1.0"
