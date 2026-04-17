@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: perf-small
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - list:
+        elements:
+          - name: app1
+            env: dev
+          - name: app2
+            env: dev
+          - name: app3
+            env: dev
+          - name: app4
+            env: prod
+          - name: app5
+            env: prod
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: environment
+              operator: In
+              values:
+                - dev
+        - matchExpressions:
+            - key: environment
+              operator: In
+              values:
+                - prod
+  template:
+    metadata:
+      name: 'perf-small-{{.name}}'
+      labels:
+        environment: '{{.env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ranakan19/argocd-example-apps.git
+        path: guestbook
+        targetRevision: HEAD
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'perf-{{.name}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true

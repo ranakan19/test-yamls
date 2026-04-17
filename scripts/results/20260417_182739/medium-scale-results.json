@@ -1,0 +1,35 @@
+{
+  "scenario": "medium-scale",
+  "branch": "master",
+  "timestamp": "2026-04-17T22:31:21Z",
+  "applicationset_name": "perf-medium",
+  "metrics": {
+    "total_duration_seconds": 14,
+    "expected_apps": 30,
+    "actual_apps": 0,
+    "argocd_metrics": {
+      "baseline_app_reconcile_count": 76,
+      "final_app_reconcile_count": 352,
+      "total_app_reconciles": 276,
+      "baseline_appset_reconcile_count": 48,
+      "final_appset_reconcile_count": 133,
+      "total_appset_reconciles": 85,
+      "note": "Direct from argocd_app_reconcile_count and argocd_appset_reconcile_count metrics at http://localhost:8082"
+    }
+  },
+  "start_time": "2026-04-17T22:31:21Z",
+  "end_time": "2026-04-17T22:31:41Z",
+  "git_change_phase": {
+    "duration_seconds": 5,
+    "start_time": "2026-04-17T22:32:13Z",
+    "end_time": "2026-04-17T22:35:16Z",
+    "argocd_metrics": {
+      "baseline_app_reconcile_count": 370,
+      "final_app_reconcile_count": 477,
+      "total_app_reconciles": 107,
+      "baseline_appset_reconcile_count": 133,
+      "final_appset_reconcile_count": 276,
+      "total_appset_reconciles": 143
+    }
+  }
+}

@@ -1,0 +1,108 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: perf-medium
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - list:
+        elements:
+          - name: app1
+            env: canary
+          - name: app2
+            env: canary
+          - name: app3
+            env: staging
+          - name: app4
+            env: staging
+          - name: app5
+            env: staging
+          - name: app6
+            env: staging
+          - name: app7
+            env: staging
+          - name: app8
+            env: staging
+          - name: app9
+            env: staging
+          - name: app10
+            env: staging
+          - name: app11
+            env: prod
+          - name: app12
+            env: prod
+          - name: app13
+            env: prod
+          - name: app14
+            env: prod
+          - name: app15
+            env: prod
+          - name: app16
+            env: prod
+          - name: app17
+            env: prod
+          - name: app18
+            env: prod
+          - name: app19
+            env: prod
+          - name: app20
+            env: prod
+          - name: app21
+            env: prod
+          - name: app22
+            env: prod
+          - name: app23
+            env: prod
+          - name: app24
+            env: prod
+          - name: app25
+            env: prod
+          - name: app26
+            env: prod
+          - name: app27
+            env: prod
+          - name: app28
+            env: prod
+          - name: app29
+            env: prod
+          - name: app30
+            env: prod
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: environment
+              operator: In
+              values:
+                - canary
+        - matchExpressions:
+            - key: environment
+              operator: In
+              values:
+                - staging
+          maxUpdate: 50%
+        - matchExpressions:
+            - key: environment
+              operator: In
+              values:
+                - prod
+          maxUpdate: 10
+  template:
+    metadata:
+      name: 'perf-med-{{.name}}'
+      labels:
+        environment: '{{.env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ranakan19/argocd-example-apps.git
+        path: guestbook
+        targetRevision: HEAD
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'perf-med-{{.name}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
