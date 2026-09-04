@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
   annotations: 
-  - argocd.argoproj.io/ignore-differences : "/spec/replicas"
+  - "argocd.argoproj.io/ignore-differences" : "/spec/replicas"
 spec:
   replicas: 3
   revisionHistoryLimit: 3
