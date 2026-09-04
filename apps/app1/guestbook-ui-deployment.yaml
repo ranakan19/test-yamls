@@ -5,7 +5,7 @@ metadata:
   annotations: 
     argocd.argoproj.io/ignore-differences : "/spec/replicas"
 spec:
-  replicas: 5
+  replicas: 6
   revisionHistoryLimit: 3
   selector:
     matchLabels:
