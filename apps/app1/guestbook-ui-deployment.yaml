@@ -5,7 +5,7 @@ metadata:
   annotations: 
     argocd.argoproj.io/ignore-differences: |-
         jsonPointers:
-        - /spec/replicas
+        - /spec/
 spec:
   replicas: 5
   revisionHistoryLimit: 3
